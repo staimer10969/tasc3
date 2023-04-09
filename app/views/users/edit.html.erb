@@ -1,0 +1,44 @@
+<body>
+  <main>
+    <p class="notice"></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+         <h2>User info</h2>
+          <div id="error_expalation">
+            <% if @user.errors.any? %>
+            <h3 class><%= @user.errors.count %> error prohibited this obj from being saved:</h3>
+            <ul>
+             <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+             <% end %>
+            </ul>
+            <% end %>
+         </div>
+
+         <%= form_with model: @user do |f| %>
+          <label for="inputName">Name</label><br>
+          <%= f.text_field:name, autofocus:true,id:"inputName", placeholder:"Name", class:"form-control" %><br>
+          <label for="inputImage">Image</label><br>
+          <%= f.file_field:profile_image, placeholder:"Image",accept:"image/*" %><br>
+          <p id="notice"></p>
+          <label for="inputIntroduction">Introduction</label><br>
+          <%= f.text_field:introduction, autofocus:true,id:"inputIntroduction", placeholder:"Introduction", class:"form-control" %><br>
+          <p id="notice"></p>
+          <input type="submit" name="commit" value="Update User" class="btn btn-secondary" href="/users/:id" data-disable-with="Update User">
+         <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+   <div class="container mt-5">
+    <div class="row">
+     <div class="mx-auto">
+      <p>CopyRight Infratop.inc</p>
+     </div>
+    </div>
+   </div>
+  </footer>
+</body>
